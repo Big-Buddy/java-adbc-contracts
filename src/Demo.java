@@ -29,6 +29,8 @@ public class Demo {
 		//add water and earth nodes to the list
 		eList.add(waterNode);
 		eList.add(earthNode);
+//		System.out.println("earthNode vs Water :"+waterNode.equals(earthNode));
+//		System.out.println("waterNode vs Water :"+waterNode.equals(waterNode));
 		//get index of water node in eList using indexOf method
 		System.out.println("water is at position "+ eList.indexOf(waterNode));
 		//verify if list is empty
@@ -36,9 +38,12 @@ public class Demo {
 		//create new List with one stranger node in it
 		neList = new List(strangerNode);
 		//add another stranger node to neList
-		neList.add(strangerNode);
+		neList.add(waterNode);
+		neList.add(earthNode);
+		System.out.println(neList.size());
 		//remove the second element of the neList
 		neList.remove(1);
+		System.out.println(neList.size());
 		//get size of the modified neList
 		System.out.println("Size of neList: "+neList.size());
 		//replace fire node contents in eList with a rogue element

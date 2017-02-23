@@ -7,7 +7,7 @@ import be.ac.ua.ansymo.adbc.annotations.requires;
 public class Node<T> 
 {
 	public T data;
-	public Node next;
+	public Node next=null;
 	
 	@requires({"data != null"}) 
 	public Node (T data)
@@ -37,4 +37,11 @@ public class Node<T>
 	{
 		return this.next;
 	}
+	
+//	public boolean equals(Node node){
+//		if(this.next.equals(null))
+//			return this.getData().equals(node.getData());
+//		return this.getData().equals(node.getData())&&
+//				this.getNext().equals(node.getNext());
+//	}
 }

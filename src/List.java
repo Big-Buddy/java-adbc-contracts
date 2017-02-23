@@ -101,7 +101,7 @@ public class List
 	@requires({"$this.collection.size()!=0",
 		"(index >= 0) && (index < $this.collection.size())"
 	})
-	@ensures({"$this.collection.get(index)==$old($this.collection.get(index+1))"})
+	@ensures({"index==$this.collection.size()-1?true:$this.collection.get(index)==$old($this.collection.get(index))"})
 	//the index can point at either the last node or another node (a.k.a. index == $this.collection.size()) 
 	//For the last node the immediate next should be null,
 	//
