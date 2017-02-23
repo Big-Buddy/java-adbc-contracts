@@ -4,7 +4,7 @@ import be.ac.ua.ansymo.adbc.annotations.ensures;
 import be.ac.ua.ansymo.adbc.annotations.invariant;
 import be.ac.ua.ansymo.adbc.annotations.requires;
 
-class Node<T> 
+public class Node<T> 
 {
 	public T data;
 	public Node next;

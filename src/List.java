@@ -5,7 +5,7 @@ import be.ac.ua.ansymo.adbc.annotations.invariant;
 import be.ac.ua.ansymo.adbc.annotations.requires;
 
 @invariant({"$this.collection.size() >= 0"})
-class List 
+public class List 
 {
 	public ArrayList<Node> collection;
 	
@@ -17,7 +17,7 @@ class List
 	}
 	
 	@requires({"n != null"})
-	@ensures({"$this.collection.size() = 1"})
+	@ensures({"$this.collection.size() == 1"})
 	public List(Node n)
 	{
 		this.collection = new ArrayList<Node>();
@@ -39,7 +39,7 @@ class List
 	//The capacity of the ArrayList is not related to its size (I think) so a solution can be related to that
 	//**********
 	@requires({
-			   "(index >= 0) && (index < this.collection.size())",
+			   "(index >= 0) && (index < $this.collection.size())",
 			   "n != null"
 			 })
 	@ensures({
@@ -83,7 +83,7 @@ class List
 	//NOTE: First post-condition may require an if-else statement, is that possible with adbc?
 	@requires({"n != null"})
 	@ensures({
-			  "",
+			  "true",
 			})
 	public int indexOf(Node n)
 	{
@@ -99,9 +99,9 @@ class List
 	}
 	
 	@requires({"$this.collection.size()!=0",
-		"(index >= 0) && (index < this.collection.size())"
+		"(index >= 0) && (index < $this.collection.size())"
 	})
-	@ensures({"$this.collection.get(index)==$old($this.collection.get(index+1)"})
+	@ensures({"$this.collection.get(index)==$old($this.collection.get(index+1))"})
 	//the index can point at either the last node or another node (a.k.a. index == $this.collection.size()) 
 	//For the last node the immediate next should be null,
 	//
@@ -111,7 +111,7 @@ class List
 	}
 	
 	@requires({"element!=null",
-		"(index >= 0) && (index < this.collection.size())"
+		"(index >= 0) && (index < $this.collection.size())"
 	})
 	@ensures({"$this.collection.size() == $old($this.collection.size())"})
 	public <T> void set(int index, T element)
