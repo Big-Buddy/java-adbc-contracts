@@ -4,11 +4,13 @@ import be.ac.ua.ansymo.adbc.annotations.ensures;
 import be.ac.ua.ansymo.adbc.annotations.invariant;
 import be.ac.ua.ansymo.adbc.annotations.requires;
 
-@invariant({"this.collection.size() >= 0"})
+@invariant({"$this.collection.size() >= 0"})
 class List 
 {
 	public ArrayList<Node> collection;
 	
+	@requires ({ "true" })
+	@ensures ({ "true" })
 	public List()
 	{
 		this.collection = new ArrayList<Node>();
@@ -49,6 +51,7 @@ class List
 		this.collection.add(index, n);
 	}
 	
+	@requires ({ "true" })
 	@ensures({"$this.collection.isEmpty()"})
 	public void clear()
 	{
@@ -86,5 +89,40 @@ class List
 	{
 		return this.collection.indexOf(n);
 
+	}
+	
+	@requires ({ "true" })
+	@ensures({"$this.collection.size() == $old($this.collection.size())"})
+	public boolean isEmpty()
+	{
+		return this.collection.size()==0;
+	}
+	
+	@requires({"$this.collection.size()!=0",
+		"(index >= 0) && (index < this.collection.size())"
+	})
+	@ensures({"$this.collection.get(index)==$old($this.collection.get(index+1)"})
+	//the index can point at either the last node or another node (a.k.a. index == $this.collection.size()) 
+	//For the last node the immediate next should be null,
+	//
+	public void remove(int index)
+	{
+		this.collection.remove(index);
+	}
+	
+	@requires({"element!=null",
+		"(index >= 0) && (index < this.collection.size())"
+	})
+	@ensures({"$this.collection.size() == $old($this.collection.size())"})
+	public <T> void set(int index, T element)
+	{
+		this.collection.get(index).setData(element);
+	}
+	
+	@requires ({ "true" })
+	@ensures({"$result>=0"})
+	public int size()
+	{
+		return this.collection.size();
 	}
 }
