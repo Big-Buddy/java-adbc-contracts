@@ -8,7 +8,6 @@ import be.ac.ua.ansymo.adbc.annotations.requires;
 public class List 
 {
 	public ArrayList<Node> collection;
-	
 	@requires ({ "true" })
 	@ensures ({ "true" })
 	public List()

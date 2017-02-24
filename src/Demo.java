@@ -16,7 +16,7 @@ public class Demo {
 		Node earthNode = new Node(el4);
 		Node strangerNode = new Node(stranger);
 		//create empty list
-		List eList = new List();
+		BList eList = new BList(15);
 		//add Air Node to empty list eList
 		eList.add(airNode);
 		//verify that eList contains air, using contains method
@@ -42,7 +42,7 @@ public class Demo {
 		neList.add(earthNode);
 		System.out.println(neList.size());
 		//remove the second element of the neList
-		neList.remove(1);
+		neList.remove(2);
 		System.out.println(neList.size());
 		//get size of the modified neList
 		System.out.println("Size of neList: "+neList.size());
