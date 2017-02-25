@@ -41,6 +41,7 @@ public class Demo {
 		neList.add(waterNode);
 		neList.add(earthNode);
 		System.out.println(neList.size());
+		System.out.println(neList.get(2).getNext());
 		//remove the second element of the neList
 		neList.remove(2);
 		System.out.println(neList.size());

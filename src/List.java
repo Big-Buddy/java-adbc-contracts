@@ -31,6 +31,11 @@ public class List
 	public void add(Node n)
 	{
 		this.collection.add(n);
+		
+		if(this.collection.size() > 1)
+		{
+			this.get(this.collection.size()-2).setNext(this.get(this.collection.size()-1));
+		}
 	}
 	
 	//***********
@@ -48,6 +53,16 @@ public class List
 	public void add(int index, Node n)
 	{
 		this.collection.add(index, n);
+		
+		if(this.collection.size() > 1 && (index == this.collection.size()-1))
+		{
+			this.get(this.collection.size()-2).setNext(this.get(this.collection.size()-1));
+		}
+		else if (this.collection.size() > 1 && (index > 1 && index < this.collection.size()-1))
+		{
+			this.get(this.collection.size()-2).setNext(this.get(this.collection.size()-1));
+			this.get(index).setNext(this.get(index+1));
+		}
 	}
 	
 	@requires ({ "true" })
@@ -100,7 +115,7 @@ public class List
 	@requires({"$this.collection.size()!=0",
 		"(index >= 0) && (index < $this.collection.size())"
 	})
-	@ensures({"index==$this.collection.size()-1?true:$this.collection.get(index)==$old($this.collection.get(index))"})
+	@ensures({"(index == $old($this.collection.size()-1)) ? true : ($old($this.get(index).getNext()) == $this.get(index-1).getNext())"})
 	//the index can point at either the last node or another node (a.k.a. index == $this.collection.size()) 
 	//For the last node the immediate next should be null,
 	//
