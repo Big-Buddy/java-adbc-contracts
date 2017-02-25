@@ -43,7 +43,7 @@ public class Demo {
 		System.out.println(neList.size());
 		System.out.println(neList.get(2).getNext());
 		//remove the second element of the neList
-		neList.remove(2);
+		neList.remove(1);
 		System.out.println(neList.size());
 		//get size of the modified neList
 		System.out.println("Size of neList: "+neList.size());

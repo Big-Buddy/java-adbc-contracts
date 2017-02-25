@@ -115,13 +115,31 @@ public class List
 	@requires({"$this.collection.size()!=0",
 		"(index >= 0) && (index < $this.collection.size())"
 	})
-	@ensures({"(index == $old($this.collection.size()-1)) ? true : ($old($this.get(index).getNext()) == $this.get(index-1).getNext())"})
+	@ensures({"$old($this.collection.get(index).getNext()==null) ? "
+			+ "$this.collection.get(index-1).getNext()==null : $this.collection.get(index-1).getNext() == $old($this.get(index).getNext())"})
 	//the index can point at either the last node or another node (a.k.a. index == $this.collection.size()) 
 	//For the last node the immediate next should be null,
 	//
 	public void remove(int index)
 	{
+		System.out.println("index: "+index);
+		System.out.println("old size: "+this.collection.size());
+		System.out.println("pre-remove node at index: "+ this.collection.get(index).getData());
+		System.out.println("pre-remove next pointer: "+ this.collection.get(index).getNext());
+		if(this.collection.size() > 1 && (index == this.collection.size()-1))	//removing last node
+		{
+			System.out.println("hola hola");
+			this.get(index-1).next=(this.get(index).getNext());
+		}
+		else if (this.collection.size() > 1 && (index >= 1 && index < this.collection.size()-1))	//removing node in between
+		{
+			System.out.println("hola");
+			this.get(index-1).setNext(this.get(index+1));
+		}
 		this.collection.remove(index);
+		System.out.println("new size: "+this.collection.size());
+		System.out.println("post-remove node at index: "+ this.collection.get(index-1).getData());
+		System.out.println("post-remove next pointer: "+ this.collection.get(index-1).getNext());
 	}
 	
 	@requires({"element!=null",
