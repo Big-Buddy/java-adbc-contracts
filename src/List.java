@@ -43,7 +43,7 @@ public class List
 	//The capacity of the ArrayList is not related to its size (I think) so a solution can be related to that
 	//**********
 	@requires({
-			   "(index >= 0) && (index < $this.collection.size())",
+			   "((index > 0) && (index <= $this.collection.size())) || (index == 0)",
 			   "n != null"
 			 })
 	@ensures({
@@ -113,7 +113,7 @@ public class List
 	}
 	
 	@requires({"$this.collection.size()!=0",
-		"(index >= 0) && (index < $this.collection.size())"
+		"((index > 0) && (index <= $this.collection.size())) || (index == 0)"
 	})
 	@ensures({"$old($this.collection.get(index).getNext()==null) ? "
 			+ "$this.collection.get(index-1).getNext()==null : $this.collection.get(index-1).getNext() == $old($this.get(index).getNext())"})
