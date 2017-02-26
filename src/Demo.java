@@ -38,17 +38,16 @@ public class Demo {
 		//confirm that eList is empty
 		System.out.println("eList is empty: "+eList.isEmpty());
 		//remove the first node in neList
+		neList.remove(4);
+		neList.remove(3);
+		neList.remove(2);
+		neList.remove(1);
 		neList.remove(0);
+		
 		//remove the last node in neList
 		//neList.remove(neList.size()-1);
 		
 		//show contents of eList
-		System.out.println("Contents of eList: ");
-		for(int i=0;i<eList.size();i++)
-			System.out.println(eList.get(i).getData());
-		System.out.println("Contents of neList: ");
-		for(int i=0;i<neList.size();i++)
-			System.out.println(neList.get(i).getData());
 	}
 
 }
