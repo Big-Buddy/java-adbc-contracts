@@ -116,7 +116,7 @@ public class List
 		"((index > 0) && (index <= $this.collection.size())) || (index == 0)"
 	})
 	@ensures({"$old($this.collection.get(index).getNext()==null) ? "
-			+ "$this.collection.get(index-1).getNext()==null : $this.collection.get(index-1).getNext() == $old($this.get(index).getNext())"})
+			+ "$this.collection.get(index-1).getNext()==null : (index!=0 ? $this.collection.get(index-1).getNext() == $old($this.get(index).getNext()) : true)"})
 	//the index can point at either the last node or another node (a.k.a. index == $this.collection.size()) 
 	//For the last node the immediate next should be null,
 	//
@@ -138,8 +138,8 @@ public class List
 		}
 		this.collection.remove(index);
 		System.out.println("new size: "+this.collection.size());
-		System.out.println("post-remove node at index: "+ this.collection.get(index-1).getData());
-		System.out.println("post-remove next pointer: "+ this.collection.get(index-1).getNext());
+		System.out.println("post-remove node at index: "+ this.collection.get(index).getData());
+		System.out.println("post-remove next pointer: "+ this.collection.get(index).getNext());
 	}
 	
 	@requires({"element!=null",

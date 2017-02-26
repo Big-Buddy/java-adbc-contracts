@@ -15,40 +15,33 @@ public class Demo {
 		Node waterNode = new Node(el3);
 		Node earthNode = new Node(el4);
 		Node strangerNode = new Node(stranger);
-		//create empty list
-		BList eList = new BList(15);
-		//add Air Node to empty list eList
-		eList.add(airNode);
-		//verify that eList contains air, using contains method
-		System.out.println("eList contains air node: "+eList.contains(airNode));
-		List neList = new List(new Node("firstElement"));
-		//insert fire node before air node in eList
-		eList.add(0,fireNode);
-		//verify contents of ndoe at position 0 in eList using get method 
-		System.out.println("node at position 0 in eList: "+(String) eList.get(0).getData());
-		//add water and earth nodes to the list
-		eList.add(waterNode);
-		eList.add(earthNode);
-//		System.out.println("earthNode vs Water :"+waterNode.equals(earthNode));
-//		System.out.println("waterNode vs Water :"+waterNode.equals(waterNode));
-		//get index of water node in eList using indexOf method
-		System.out.println("water is at position "+ eList.indexOf(waterNode));
-		//verify if list is empty
-		System.out.println("is eList empty: " + eList.isEmpty());
-		//create new List with one stranger node in it
-		neList = new List(strangerNode);
-		//add another stranger node to neList
-		neList.add(waterNode);
-		neList.add(earthNode);
-		System.out.println(neList.size());
-		System.out.println(neList.get(2).getNext());
-		//remove the second element of the neList
-		neList.remove(1);
-		System.out.println(neList.size());
-		//get size of the modified neList
+		//create empty bounded list with capacity of 5 elements
+		BList eList = new BList(5);
+		//create bounded list with one element, capacity 5
+		List neList = new BList(5, new Node("firstElement"));
+		//add node to tail of neList (normal addition)
+		neList.add(airNode);
+		//add node to the beginning of the neList
+		neList.add(0, earthNode);
+		//add node in the 2nd position of the neList
+		neList.add(1,waterNode);
+		//add another node to neList
+		neList.add(fireNode);
+		//verify size of neList
 		System.out.println("Size of neList: "+neList.size());
-		//replace fire node contents in eList with a rogue element
-		eList.set(eList.indexOf(fireNode), el5);
+		//verify that earthNode is in neList
+		System.out.println("neList contains earthNode: "+neList.contains(earthNode));
+		//get contents of the node at the 3rd position
+		System.out.println("contents of node at 3rd position: "+neList.get(2).getData());
+		//get index of the waterNode
+		System.out.println("index of the waterNode: "+neList.indexOf(waterNode));
+		//confirm that eList is empty
+		System.out.println("eList is empty: "+eList.isEmpty());
+		//remove the first node in neList
+		neList.remove(0);
+		//remove the last node in neList
+		neList.remove(neList.size()-1);
+		
 		//show contents of eList
 		System.out.println("Contents of eList: ");
 		for(int i=0;i<eList.size();i++)

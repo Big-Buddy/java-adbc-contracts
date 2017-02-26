@@ -15,22 +15,22 @@ public class BList extends List{
 	}
 	@requires({"n != null",
 		"capacity>0" })
-	@ensures({"$this.collection.size() = 1"})
+	@ensures({"$this.collection.size() == 1"})
 	public BList(int capacity, Node n){
 		this.capacity=capacity;
 		this.collection = new ArrayList<Node>(capacity);
 		this.collection.add(n);
 	}
-//	
-//	@requires ({ "$super && $this.collection.size()<$this.capacity" })
-//	@ensures ({ "$super" })
-//	public void add(Node n){
-//		super.add(n);;
-//	}
-//	
-//	@requires ({ "$super && $this.collection.size()<$this.capacity" })
-//	@ensures ({ "$super" })
-//	public void add(int index, Node n){
-//		super.add(index, n);;
-//	}
+	
+	@requires ({ "$super && $this.collection.size()<$this.capacity" })
+	@ensures ({ "$super" })
+	public void add(Node n){
+		super.add(n);;
+	}
+	
+	@requires ({ "$super && $this.collection.size()<$this.capacity" })
+	@ensures ({ "$super" })
+	public void add(int index, Node n){
+		super.add(index, n);;
+	}
 }
