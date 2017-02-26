@@ -40,7 +40,7 @@ public class Demo {
 		//remove the first node in neList
 		neList.remove(0);
 		//remove the last node in neList
-		neList.remove(neList.size()-1);
+		//neList.remove(neList.size()-1);
 		
 		//show contents of eList
 		System.out.println("Contents of eList: ");

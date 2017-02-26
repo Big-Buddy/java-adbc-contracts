@@ -58,9 +58,13 @@ public class List
 		{
 			this.get(this.collection.size()-2).setNext(this.get(this.collection.size()-1));
 		}
-		else if (this.collection.size() > 1 && (index > 1 && index < this.collection.size()-1))
+		else if (index > 0 && index < this.collection.size()-1)
 		{
-			this.get(this.collection.size()-2).setNext(this.get(this.collection.size()-1));
+			this.get(index-1).setNext(this.get(index));
+			this.get(index).setNext(this.get(index+1));
+		}
+		else if (index == 0 && this.collection.size() > 1)
+		{
 			this.get(index).setNext(this.get(index+1));
 		}
 	}
