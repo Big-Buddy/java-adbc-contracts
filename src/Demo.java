@@ -14,7 +14,6 @@ public class Demo {
 		Node fireNode = new Node(el2);
 		Node waterNode = new Node(el3);
 		Node earthNode = new Node(el4);
-		Node strangerNode = new Node(stranger);
 		//create empty bounded list with capacity of 5 elements
 		BList eList = new BList(5);
 		//create bounded list with one element, capacity 5
@@ -38,16 +37,21 @@ public class Demo {
 		//confirm that eList is empty
 		System.out.println("eList is empty: "+eList.isEmpty());
 		//remove the first node in neList
-		neList.remove(4);
-		neList.remove(3);
-		neList.remove(2);
-		neList.remove(1);
+		System.out.println("Removing 1st node;");
 		neList.remove(0);
-		
+		//Display the next node's contents for the 0th position:
+		System.out.println("Contents of the next to 0th node: "+neList.get(0).getNext().getData());
 		//remove the last node in neList
+		System.out.println("Removing last node; ");
+		neList.remove(3);
 		//neList.remove(neList.size()-1);
-		
-		//show contents of eList
+		System.out.println("New size of neList: "+neList.size());
+		//set contents of 0th node to Rogue Element
+		neList.set(0, el5);
+		System.out.println("New 0th postion Data: "+ neList.get(0).getData());
+		//clear contents of neList
+		neList.clear();
+		System.out.println("New size of neList after clear: "+ neList.size());
 	}
 
 }

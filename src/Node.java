@@ -1,7 +1,4 @@
-import java.util.*;
-
 import be.ac.ua.ansymo.adbc.annotations.ensures;
-import be.ac.ua.ansymo.adbc.annotations.invariant;
 import be.ac.ua.ansymo.adbc.annotations.requires;
 
 public class Node<T> 
